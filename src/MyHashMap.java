@@ -70,17 +70,17 @@ public class MyHashMap <K,V>{
         Node<K, V>[] oldBuckets = buckets;
         int newCapacity = oldBuckets.length * 2;
 
-        buckets = new Node[newCapacity]; // присваиваем НОВЫЙ массив
+        buckets = new Node[newCapacity];
         threshold = (int) (newCapacity * LOAD_FACTOR);
 
         for (Node<K, V> head : oldBuckets) {
             while (head != null) {
-                Node<K, V> next = head.next;      // запоминаем next до перезаписи
+                Node<K, V> next = head.next;
                 int newIndex = Math.abs(
                         head.key == null ? 0 : head.key.hashCode()
                 ) % newCapacity;
 
-                head.next = buckets[newIndex];    // вставляем в голову нового бакета
+                head.next = buckets[newIndex];
                 buckets[newIndex] = head;
 
                 head = next;
